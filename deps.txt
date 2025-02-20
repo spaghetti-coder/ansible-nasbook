@@ -1,0 +1,1 @@
+basebook = https://github.com/spaghetti-coder/ansible-basebook/archive/master.tar.gz
