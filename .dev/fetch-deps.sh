@@ -6,4 +6,4 @@ declare SELF_DIR; SELF_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
 # shellcheck disable=SC1091
 . "${SELF_DIR}/fetch-deps.lib.sh"
 
-(return 2>/dev/null) || fetch_deps
+(return 2>/dev/null) || fetch_deps "${@}"
