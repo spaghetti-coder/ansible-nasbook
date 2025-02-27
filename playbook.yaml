@@ -24,3 +24,10 @@
 
     - role: upgrade
       tags: [upgrade, upgradable, never]
+
+    #
+    # Nas roles
+    #
+    - role: nginx-proxy
+      tags: [nginx-proxy]
+      when: nginx_proxy_managed | default(false)
