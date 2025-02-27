@@ -8,9 +8,13 @@ play() (
   declare -a COLLECTIONS_CMD=(
     ansible-galaxy collection install -r "${REQS_FILE}" -p "${REQS_DIR}"
   )
+  declare -a PLAYBOOK_CMD=(
+    ansible-playbook ./playbook.yaml -i ./hosts.yaml
+  )
 
   init() {
     cat -- "${PROJ_DIR}/${REQS_FILE}" &>/dev/null || COLLECTIONS_CMD=(true)
+    cat -- "${PROJ_DIR}/vaulted.txt" &>/dev/null && PLAYBOOK_CMD+=(-J)
   }
 
   main() {
@@ -20,7 +24,7 @@ play() (
 
     ( set -x
       "${COLLECTIONS_CMD[@]}" \
-      && ansible-playbook ./playbook.yaml -i ./hosts.yaml "${@}"
+      && "${PLAYBOOK_CMD[@]}" "${@}"
     ) || return
   }
 
