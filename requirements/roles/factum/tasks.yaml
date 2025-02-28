@@ -1,4 +1,8 @@
 ---
+- name: Load users database
+  ansible.builtin.getent:
+    database: passwd
+
 - name: Set OS family
   ansible.builtin.set_fact:
     factum_os_family: "{{ ansible_os_family | lower }}"
